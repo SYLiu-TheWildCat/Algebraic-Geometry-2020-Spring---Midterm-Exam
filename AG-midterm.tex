@@ -1,9 +1,9 @@
 \documentclass[12pt]{amsart}
 
 \usepackage{amsfonts, amssymb, amscd}
+\usepackage{amsmath}
 
 \usepackage{verbatim}
-\usepackage{amssymb}
 \usepackage{mathrsfs}
 \usepackage{graphicx}
 \usepackage{cite}
@@ -69,6 +69,7 @@
 \newcommand{\BB}{\mathfrak{B}}
 
 \newtheorem{question}{Question}
+\newtheorem{clm}{Claim}
 \setcounter{question}{0}
 
 \newcommand{\xmark}{\text{\ding{55}}}
@@ -80,6 +81,7 @@ right=1cm,
 top=2cm,
 bottom=2cm
 }
+
 
 \title{Algebraic Geometry 2020 Spring - Midterm Exam}
 \author{Siyang Liu}
@@ -97,7 +99,7 @@ bottom=2cm
 
 This is a take-home exam.
 
-There are 7 questions with total 100 points in this exam. Write your answers with {\bf detailed steps} in the provided answer sheets. Partial answers can get partial credits. 
+There are 7 questions with total 100 points in this exam. Write your answers with {\bf detailed steps} in the provided answer sheets. Partial answers can get partial credits.
 
 {\bf The exam is due on April 12th (Sunday), 10 am.}
 
@@ -140,7 +142,7 @@ Explain the following concepts:
 			\item (Glueing Axiom) Let $U,\mathcal{V} $ be defined as above, and let $\{s_i\in F(V_i )\}_{i\in\mathcal{I} } $ be a family of elements such that for all $i,j\in\mathcal{I} $, $s_i\vert_{V_i\cap V_j }=s_j\vert_{V_i\cap V_j} $, then there exists $s\in F(U)$ such that $s\vert_{V_i } =s_i  $.
 		\end{enumerate}
 	Here we write $s\vert_V $ for $V\subset U$ and $s\in F(U)$ as the image of $s$ under the natural map $F(\mathrm{Res}_{VU} )\colon F(U)\to F(V)$, here $\mathrm{Res}_{VU}\colon V\to U$ is the natural inclusion map.
-	
+
 	Let $x\in X$ be any point of $X$. The \emph{stalk} of a sheaf $\mathscr{F} $ at $x$ is the set $\mathscr{F}_x $ of equivalent classes of pairs $(V,s)$ where $x\in V\in\mathsf{T} (X)$ is an open set containing $x$ and $s\in F(V)$ is an element. The equivalence relation is given by $(U,s)\sim (V,t)$ if and only if there exists a subset $x\in W\subset U\cap V$ such that $s\vert_W =t\vert_W $.
 	\item Assume $A$ is a commutative ring, the \emph{spectrum} of $A$, written $\spec A$, is the set of all prime ideals $\mathfrak{p}\subseteq A$, endowed with the Zariski topology such that closed subsets of $\spec A$ is of the form
 	\[
@@ -173,7 +175,7 @@ Let $\phi: \mathscr F \to  \mathscr G$ be a morphism between sheaves. Show that 
 
 \begin{proof}
     [Answer] By definition, $\phi $ is surjective if and only if $\Ima\phi =\mathscr{G} $. Since $\Ima\phi =\mathscr{G} $, we have for all $p\in X$ where $X$ is the underlying topological space, $(\Ima\phi )_p =\mathscr{G}_p $. By defintion of $\Ima\phi $, it is obtained from the presheaf $(\Ima\phi )^{pre} (U)=\phi_U (\mathscr{F} (U))$ via sheafification, hence $(\Ima\phi )_p =(\Ima\phi )^{pre}_p =\phi_p (\mathscr{F}_p )$ and therefore $\phi_p $ is surjective for all $p\in X$. Conversely, if $\phi_p $ is surjective for all $p\in X$, for each $U\subseteq X$ open, we have \[\Ima\phi (U)=\left\{s\colon U\to\displaystyle{\coprod_{p\in U}\Ima\phi_p }\middle\vert\begin{array}{l} s(p)\in\Ima\phi_p ;\\\text{For any }p\in U,\ \exists U\supseteq V\ni p\text{ and } t\in\Ima\phi (V), s\vert_V =t.\end{array}\right\},\]and since $\phi_p $ is surjective for all $p\in X$, it follows that $\Ima\phi_p =\mathscr{G}_p $ for all $p\in X$. Then for any $s\in\mathscr{G} (U)$ and $p\in U$, there exists $p\in V\subseteq U$ such that $s\vert_V\in\mathscr{G} (V)$ and since $s_p\in\Ima\phi_p $, there exists $W\subseteq V$ and $t\in (\Ima\phi )^{pre} (W)$ such that $s\vert_W =t\in (\Ima\phi )^{pre} (W)$, therefore we have $s\in\Ima\phi (U)$, hence $\Ima\phi (U)=\mathscr{G} (U)$ and therefore $\Ima\phi =\mathscr{G} $.
-    
+
     It remains to show the following claim:
     \[
     (\Ima\phi )^{pre}_p =\phi_p (\mathscr{F}_p )
@@ -191,14 +193,28 @@ Let $ \mathscr F, \mathscr G$ be sheaves of abelian groups on $X$. For any open 
 
 \begin{proof}
     For any two morphisms $\varphi ,\psi\colon\mathscr{F}\vert_U\to\mathscr{G}\vert_U $, we can define the sum of this two morphisms as a morphism $\varphi +\psi\colon\mathscr{F}\vert_U\to\mathscr{G}\vert_U $ satisfying for each open subset $V\subset U$, $(\varphi +\psi )(V) =\varphi (V)+\psi (V)$. Then this addition operation is commutative, the zero morphism $0\colon\mathscr{F}\vert_U\to\mathscr{G}\vert_U ,\mathscr{F}\vert_U (V)\to 0\subset\mathscr{G}\vert_U (V)$ serves as the unit element, and for each $\varphi $, the additive inverse $-\varphi $ is given by $(-\varphi )_V (s_V )=-(\varphi_V s_V )$ for any $V\subset U$ open and any $s_V\in\mathscr{F}\vert_U (V)=\mathscr{F} (V)$. Therefore $\Hom (\mathscr{F}\vert_U ,\mathscr{G}\vert_U )$ forms an abelian group.
-    
-    In order to show the presheaf $H\colon U\mapsto\Hom (\mathscr{F}\vert_U ,\mathscr{G}\vert_U )$ forms a sheaf, it suffices to verify the two axioms. Assume $\mathcal{U} =\{U_i\}_{i\in\mathcal{I} } $ is an open cover of $U\subseteq X$, and $s\in H(U)$ satisfying for any $i\in\mathcal{I} $ we have $s\vert_{U_i } =0$, then for any $V\subset U$ and $a_V\in\mathscr{F} (V)$, we have $(s\vert_V (a_V ))\vert_{U_i\cap V} =s\vert_{U_i\cap V} (a_V )=0$ for each $i\in\mathcal{I} $ and since $\mathscr{G} $ is a sheaf, it follows that $s\vert_V (a_V )=0$. Therefore $s$ is a zero morphism in $\mathscr{F} ($
-\en d.{proof}
+
+    In order to show the presheaf $H\colon U\mapsto\Hom (\mathscr{F}\vert_U ,\mathscr{G}\vert_U )$ forms a sheaf, it suffices to verify the two axioms. Assume $\mathcal{U} =\{U_i\}_{i\in\mathcal{I} } $ is an open cover of $U\subseteq X$, and $s\in H(U)$ satisfying for any $i\in\mathcal{I} $ we have $s\vert_{U_i } =0$, then for any $V\subset U$ and $a_V\in\mathscr{F} (V)$, we have $(s\vert_V (a_V ))\vert_{U_i\cap V} =s\vert_{U_i\cap V} (a_V )=0$ for each $i\in\mathcal{I} $ and since $\mathscr{G} $ is a sheaf, it follows that $s\vert_V (a_V )=0$. Therefore $s$ is a zero morphism in $\mathscr{F} $.
+
+		Now set $\{s_i\}_{i\in\mathcal{I}} $ to be a family of morphisms from $\mathscr{F}\vert_{U_i } $ to $\mathscr{G}\vert_{U_i } $ such that $s_i\vert_{U_i\cap U_j } =s_j\vert_{U_i\cap U_j } $ for any $i,j$, then for any open subset $V\subset U$ and $a_V\in\mathscr{F} (V) $, we can define $s_V (a_V )$ to be the element $t$ in $\mathscr{G} (V)$ such that $t\vert_{V\cap U_i } =(s_i )_{V\cap U_i } (a_V )\vert_{V\cap U_i } $. Such a $t$ exists because of the glueing axiom for $\mathscr{G} $. For another element $b_V\in\mathscr{F} (V)$, we have for each $i\in\mathcal{I} $, $(s_V (a_V +b_V ))\vert_{U_i\cap V} =(s_i )_{V\cap U_i } (a_V +b_V )\vert_{V\cap U_i } =(s_i )_{V\cap U_i } (a_V )\vert_{V\cap U_i } +(s_i )_{V\cap U_i } (b_V )\vert_{V\cap U_i } = (s_V (a_V ))\vert_{U_i\cap V} +(s_V (b_V ))\vert_{U_i\cap V } $, hence $s$ actually defines a morphism on $\mathscr{F} $ satisfies $s\vert_{U_i } =s_i $ by construction. Therefore $H$ is a presheaf satisfying both the identity axiom and the glueing axiom, which implies that $H$ is a sheaf.
+\end{proof}
 
 \begin{question}[$10$ points]
 Let $\phi: A \to B$ be a homomorphism of rings, and let $f: Y ={\rm Spec} B \to X={\rm Spec} A$ be the induced morphism of affine schemes. Show that $\phi$ is injective if and only if the map of sheaves $f^\#: \mathcal O_X \to f_*\mathcal O_Y$ is injective. Show furthermore in that case $f$ is dominant, i.e. $f(Y)$ is dense in $X$.
 
 \end{question}
+
+\begin{proof}
+	If $f^{\# } $ is injective, then the induced morphism on global sections $f^{\# }_X\colon\Gamma (X,\mathcal{O}_X )\to\Gamma (Y,\mathcal{O}_Y )$ is injective and identical to $\phi\colon A\to B$, hence $\phi $ is injective. Conversely, if $\phi\colon A\to B$ is injective, $B$ is endowed with a faithful $A$-module structure, and $f^{\# } $ gives $f^{\ast }\mathcal{O}_Y $ a $\mathcal{O}_X $-module structure. We claim that
+	\begin{clm}\label{equivalence-between-ring-and-module}
+		$\tilde{B}\cong f_{\ast }\mathcal{O}_Y $ as $\mathcal{O}_X $-modules.
+	\end{clm}
+	Using this claim, we have for each $\mathfrak{p}\in X$, $f^{\# } $ induces a morphism $\mathcal{O}_{X,\mathfrak{p} } =A_{\mathfrak{p} }\to B_{\mathfrak{p} } $ of $\mathcal{O}_{X,\mathfrak{p} } $-modules, which is exactly the local homomorphism $\phi_{\mathfrak{p} } $. For any $\frac{a}{s}\in A_{\mathfrak{p} } $ with $\phi_{\mathfrak{p} } (\frac{a}{s} )=0$, there exists $t\not\in\mathfrak{p} $ such that $t.\phi (a)=\phi (ta)=0$, and since $\phi $ is injective, it follows that $ta=0$, and therefore $\frac{a}{s} =0$ in $A_{\mathfrak{p} } $. We have shown that $\phi_{\mathfrak{p} } $ is injective for all $\mathfrak{p} $, and therefore $f^{\# } $ is also injective.
+\end{proof}
+
+\begin{proof}
+	[Proof of Claim \ref{equivalence-between-ring-and-module}] It suffices to construct a morphism $f_{\ast }\mathcal{O}_Y \to\tilde{B} $ for the set of distinguished open subsets $\{D(h)\}_{h\in A} $. For any such $h$, we have $f_{\ast}\mathcal{O}_Y (D(h))=\mathcal{O}_Y (f^{-1} D(h))=\mathcal{O}_Y (D(\phi (h)))=B_{\phi (h)} $, and $\tilde{B} (D(h))=B_h =A_h\otimes_A B$. With the given action of elements of $A$ in $B$, we can define an $A_h $-module homomorphism $A_h\otimes_A B\to B_{\phi (h)} $ by $\frac{a}{h^r }\otimes b\mapsto \frac{\phi (a)b}{\phi (h)^r } $. If $\frac{a}{h^r }\otimes b\mapsto 0$, then there exists an integer $n\geq 0$ such that $\phi (h)^n\phi (a)b=0$, hence $\phi (h^n a)b=0$, which implies that $\frac{a}{h^r }\otimes b=\frac{1}{h^{n+r} }\otimes (\phi (h^n a)b)=0$, hence this homomorphism is injective. Given any element $\frac{b}{\phi (h)^r } $, we have $\frac{1}{h^r }\otimes b\mapsto\frac{b}{\phi (h)^r } $, therefore this homomorphism is an isomorphism. It is not hard to check that this family of $A_h $-module homomorphisms induces a $\mathcal{O}_X $-module homomorphism $\tilde{B}\to f_{\ast }\mathcal{O}_Y $,  and since it is isomorphism on each distinguished open subset, it is an isomorphism of $\mathcal{O}_X $-modules.
+\end{proof}
 
 \begin{question}[$10$ points]
 Let $A$ be a ring and let $(X, \mathcal O_X)$ be a scheme. Give a morphism $f: X \to {\rm Spec} A$, we have an associated map on sheaves $f^\#: \mathcal{O}_{{\rm Spec} A} \to f_*\mathcal O_X$. Taking global sections we obtain a homomorphism $A \to \Gamma(X, \mathcal O_X)$. Thus there is a natural map
@@ -208,16 +224,26 @@ Let $A$ be a ring and let $(X, \mathcal O_X)$ be a scheme. Give a morphism $f: X
 
 \end{question}
 
+\begin{proof}
+	To show injectivity, let $f$ and $g$ be two morphisms such that $f^{\# } (X)=g^{\# } (X)$, then for all $x\in X$, there is an open neighbourhood $x\in U\subseteq X$ such that $(U,\mathscr{O}\vert_U )$ is affine and hence we can view $x$ as a prime ideal over the ring $X_U =\mathcal{O}_X (U)$, then by composing $f^{\# }_X =g^{\# }_X $ with $\mathrm{Res}_{X,U} $, we obtain the same ring homomorphism from $A$ to $X_U $ and hence $f(x)=g(x)=(\mathrm{Res}_{X,U}\circ f^{\# } )^{-1} (x)$. Therefore $f=g$ on the underlying space. It remains to show that they induce the same sheaf morphism from $\mathcal{O}_{\spec A} $ to $\mathcal{O}_X $. This follows from the commutativity between $\mathrm{Res} $ and sheaf morphisms.
+
+  To show surjectivity, let $f\colon A\to\Gamma (X;\mathcal{O}_X )$ be a ring homomorphism, then for each $x\in X$, we pick an affine neighbourhood $U$ of $x$ and consider the composition of $f$ with $\mathrm{Res}_{X,U} $. This gives a continuous map $\spec X_U\to \spec A$, such $U$ covers $X$ and the induced continuous maps are compactible, thus giving a global map $\varphi\colon X\to\spec A$. Let $\varphi\vert_U\colon U\to\spec A$ be the restriction of $\varphi $ to $U$, then by construction we know that $\varphi\vert_U $ is a morphism of schemes with corresponding sheaf morphism $\varphi\vert_U^{\# } =\mathrm{Res}_{X,U}\circ f$. Now for each $h\in A$ we have $\bar{h} =\mathrm{Res}_{X,U}\circ f(h)$ invertible for all $U\subseteq X$ affine, since $\bar{h} $ is non-zero at all points $\mathfrak{q}\in\varphi^{-1} (D(f))\cap U$, thus descends to a map $A_f\to\Gamma (\varphi^{-1} (D(f));\mathcal{O}_X )$. This implies that $f$ gives a sheaf morphism $\mathcal{O}_{\spec A}\to\mathcal{O}_X $. Therefore $(\varphi ,f)\colon X\to\spec A$ gives a morphism of schemes.
+\end{proof}
+
 \begin{question}[$10$ points]
 Show that a morphism $f: X \to Y$ between schemes is locally of finite type if and only if for every open affine subset $V = {\rm Spec} B$ of $Y$, $f^{-1}(V)$ can be covered by open affine subsets $U_j = {\rm Spec} A_j$, where each $A_j$ is a finitely generated $B$-algebra.
 
 \end{question}
 
+\begin{proof}
+	$\Leftarrow $ is trivial. For the $\Rightarrow $ part, given such a cover $\{V_i\}_{i\in\mathcal{I} } $ of $Y$ such that $V_i\cong\spec B_i $, and let $\{U_{ij}\}_{i\in\mathcal{I} ,j\in\mathcal{J}_i } $ such that $U_{ij} $ are affine open subsets of $X$ and $U_{ij}\cong\spec (A_{ij} )$, then for each $i\in\mathcal{I} $, $f^{-1} (V\cap V_i )$ is contained in the union of $U_{ij} $ for $j\in\mathcal{J}_i $, and for each such $j$, consider the distinguished open subset $D(x)$ of both $V$ and $V_i $ with $x\in B_i $, then we have $f^{-1} (D(x))=D(f^{\# } (x))$. Now it suffices to show that the induced morphism $B\to\Gamma (D(x);\mathcal{O}_X )\to\Gamma (D(f^{\# } (x);\mathcal{O}_Y )$ is finite. This is because, since $B_i\to\Gamma (D(f^{\# } (x);\mathcal{O}_Y ) $ is finite, it follows that the induced morphism on localization $\Gamma (D(x);\mathcal{O}_X )\to\Gamma (D(f^{\# } (x));\mathcal{O}_Y )$ is finite, and since $\Gamma (D(x);\mathcal{O}_X )$ is a localization of $B$, it follows that $B\to\Gamma (D(x);\mathcal{O}_X )$ is also finite.
+\end{proof}
+
 \begin{question}[$10$ points]
 Using valuative criterion to show the following claims:
 \begin{enumerate}
 \item A composition of proper morphisms is proper,
-\item Products of proper morphisms are proper. 
+\item Products of proper morphisms are proper.
 (If $f: X \to Y$ and $g: X' \to Y'$ are two morphisms of schemes over $S$, then the product morphism is $f \times f': X \times_S X' \to Y \times_S Y'$.)
 \end{enumerate}
 
